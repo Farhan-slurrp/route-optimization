@@ -93,6 +93,10 @@ class RouteOptimization:
         while queue:
             current_time, current_node = heapq.heappop(queue)
 
+            # Skip if the time is greater than the total stored time
+            if current_time > times[current_node]:
+                continue
+            
             # Explore neighbors
             for neighbor, time in self.graph.get(current_node, []):
                 time_taken = current_time + time
